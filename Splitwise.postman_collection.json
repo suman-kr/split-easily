@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "db51b234-e975-44ea-9b6a-adf3138ab5c9",
+		"name": "Splitwise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19711896"
+	},
+	"item": [
+		{
+			"name": "User creation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"suman\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/v1/add-user",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"add-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Expense addition - Equally",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Party\",\n    \"split_id\": 1,\n    \"payees\": [\n        {\n            \"userId\": 1,\n            \"amount\": 500\n        },\n        {\n            \"userId\": 3,\n            \"amount\": 100\n        }\n    ],\n    \"users\": [1, 2, 3, 4],\n    \"amount\": 600\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/v1/add-expense",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"add-expense"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Expense addition - Not Equal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Party\",\n    \"split_id\": 2,\n    \"payees\": [\n        {\n            \"userId\": 1,\n            \"amount\": 100\n        },\n        {\n            \"userId\": 3,\n            \"amount\": 300\n        }\n    ],\n    \"users\": [1, 2, 3 ],\n    \"amount_splits\": [{\n        \"userId\": 1,\n        \"amount\": 200\n    },\n    {\n        \"userId\": 2,\n        \"amount\": 100\n    },\n    {\n        \"userId\": 3,\n        \"amount\": 100\n    }\n    ],\n    \"amount\": 400\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/v1/add-expense",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"add-expense"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Expense addition - Percent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Party\",\n    \"split_id\": 3,\n    \"payees\": [\n        {\n            \"userId\": 1,\n            \"amount\": 700\n        },\n        {\n            \"userId\": 2,\n            \"amount\": 300\n        }\n    ],\n    \"users\": [1, 2, 3 ],\n    \"amount_splits\": [{\n        \"userId\": 1,\n        \"percent\": 30\n    },\n    {\n        \"userId\": 2,\n        \"percent\": 50\n    },\n    {\n        \"userId\": 3,\n        \"percent\": 20\n    }\n    ],\n    \"amount\": 1000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/v1/add-expense",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"add-expense"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Expense by `id`",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/v1/expense?id=2",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"expense"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get balances for all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/v1/balances",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"balances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get balance for the user by 'userid'",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/v1/balance?id=3",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"balance"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "localhost:3000"
+		}
+	]
+}
